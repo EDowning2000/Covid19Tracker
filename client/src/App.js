@@ -17,6 +17,7 @@ function App() {
           setCountries(countries);
         });
     };
+    getCountriesData()
   }, []);
 
   return (
