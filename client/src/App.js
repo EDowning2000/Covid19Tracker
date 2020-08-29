@@ -5,15 +5,21 @@ import { FormControl, Select, MenuItem } from "@material-ui/core";
 function App() {
   const [countries, setCountries] = useState(["usa", "uk", "canada"]);
 
+  //everytime this component is rendered this is run 
   useEffect(() => {
     const getCountriesData = async () => {
+      //waiting for all the json info to come in
       await fetch("https://disease.sh/v3/covid-19/countries")
+      //getting the json info
         .then((response) => response.json())
+        //sifting through the data
         .then((data) => {
+          //countries object is mapping through the countries of the json and setting them equal to an object which is then being set in the state to be called
           const countries = data.map((country) => ({
             name: country.country,
             value: country.countryInfo.iso2,
           }));
+          //setting the countries into the state
           setCountries(countries);
         });
     };
