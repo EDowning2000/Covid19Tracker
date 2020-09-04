@@ -4,6 +4,10 @@
 body{
   background-color: #f5f6fa
 }
+.App{
+  display: flex; 
+  justify-content: space-evenly;
+}
 .appHeader{
   display: flex; 
   justify-content: space-between;
