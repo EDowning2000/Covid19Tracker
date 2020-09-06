@@ -13,11 +13,25 @@ import Map from "./Components/Map";
 function App() {
   const [countries, setCountries] = useState([""]);
   const [country, setCountry] = useState("worldwide");
+  const [countryInfo, setCountryInfo] = useState({});
+
   const onCountryChange = async (e) => {
     const countryCode = e.target.value;
     console.log(countryCode);
     setCountry(countryCode);
+
+    const url =
+      countryCode === "worldwide"
+        ? "https://disease.sh/v3/covid-19/all"
+        : `https://disease.sh/v3/covid-19/countries/${countryCode}`;
+    await fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        setCountry(countryCode);
+        setCountryInfo(data);
+      });
   };
+  console.log('country info>>>', countryInfo)
 
   //everytime this component is rendered this is run
   useEffect(() => {
@@ -69,9 +83,7 @@ function App() {
       <Card className="appRight">
         <CardContent>
           <h3>Cases by country</h3>
-          <h3>Cases total
-            
-          </h3>
+          <h3>Cases total</h3>
         </CardContent>
       </Card>
     </div>
