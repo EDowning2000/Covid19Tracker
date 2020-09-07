@@ -15,6 +15,15 @@ function App() {
   const [country, setCountry] = useState("worldwide");
   const [countryInfo, setCountryInfo] = useState({});
 
+  useEffect(() => {
+    fetch("https://disease.sh/v3/covid-19/all")
+      .then((res) => res.json())
+      .then((data) => {
+        setCountryInfo(data);
+      });
+  });
+  //the code to get the worldwide stats when the application initially loads and no other countries are being selected
+
   const onCountryChange = async (e) => {
     const countryCode = e.target.value;
     console.log(countryCode);
@@ -75,17 +84,17 @@ function App() {
         </div>
         <div className="stats">
           <InfoBox
-            title="Covid19 Cases"
+            title="Cases Today"
             cases={countryInfo.todayCases}
             total={countryInfo.cases}
           />
           <InfoBox
-            title="Recovered"
+            title="Recovered Today"
             cases={countryInfo.todayRecovered}
             total={countryInfo.recovered}
           />
           <InfoBox
-            title="Deaths"
+            title="Deaths Today"
             cases={countryInfo.todayDeaths}
             total={countryInfo.deaths}
           />
