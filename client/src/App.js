@@ -31,7 +31,7 @@ function App() {
         setCountryInfo(data);
       });
   };
-  console.log('country info>>>', countryInfo)
+  console.log("country info>>>", countryInfo);
 
   //everytime this component is rendered this is run
   useEffect(() => {
@@ -74,9 +74,21 @@ function App() {
           </FormControl>
         </div>
         <div className="stats">
-          <InfoBox title="Covid19 Cases" total={2000} />
-          <InfoBox title="Recovered" total={2200} />
-          <InfoBox title="Deaths" total={4000} />
+          <InfoBox
+            title="Covid19 Cases"
+            cases={countryInfo.todayCases}
+            total={countryInfo.cases}
+          />
+          <InfoBox
+            title="Recovered"
+            cases={countryInfo.todayRecovered}
+            total={countryInfo.recovered}
+          />
+          <InfoBox
+            title="Deaths"
+            cases={countryInfo.todayDeaths}
+            total={countryInfo.deaths}
+          />
         </div>
         <Map />
       </div>
