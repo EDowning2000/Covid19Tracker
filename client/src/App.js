@@ -8,12 +8,14 @@ import {
   CardContent,
 } from "@material-ui/core";
 import InfoBox from "./Components/InfoBox";
+import Table from './Components/Table'
 import Map from "./Components/Map";
 
 function App() {
   const [countries, setCountries] = useState([""]);
   const [country, setCountry] = useState("worldwide");
   const [countryInfo, setCountryInfo] = useState({});
+  const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
     fetch("https://disease.sh/v3/covid-19/all")
@@ -21,7 +23,7 @@ function App() {
       .then((data) => {
         setCountryInfo(data);
       });
-  });
+  }, []);
   //the code to get the worldwide stats when the application initially loads and no other countries are being selected
 
   const onCountryChange = async (e) => {
@@ -58,6 +60,7 @@ function App() {
             value: country.countryInfo.iso2,
           }));
           //setting the countries into the state
+          setTableData(data)
           setCountries(countries);
         });
     };
@@ -104,6 +107,7 @@ function App() {
       <Card className="appRight">
         <CardContent>
           <h3>Cases by country</h3>
+          <Table countries={tableData}/>
           <h3>Cases total</h3>
         </CardContent>
       </Card>
