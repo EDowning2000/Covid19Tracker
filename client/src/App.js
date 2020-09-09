@@ -10,6 +10,7 @@ import {
 import InfoBox from "./Components/InfoBox";
 import Table from './Components/Table'
 import Map from "./Components/Map";
+import { sortData } from './utils/sort';
 
 function App() {
   const [countries, setCountries] = useState([""]);
