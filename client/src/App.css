@@ -15,6 +15,10 @@ body{
   align-items: center;
   margin-bottom: 20px;
 }
+.appHeader > h1 {
+  color: #fc3c3c;
+  font-size: 2rem;
+}
 .appLeft{
   flex: 0.9
 }
@@ -22,8 +26,21 @@ body{
   display: flex;
   justify-content: space-between;
 }
+.appInformation > h3 {
+  color: #6a5d5d;
+  font-weight: 400;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+.appInformation > h3:last-of-type {
+  margin-top: 1rem;
+}
+
 @media(max-width: 990px){
   .App{
     flex-direction:column;
   }
+}
+.appDropdown {
+  background-color: white;
 }
